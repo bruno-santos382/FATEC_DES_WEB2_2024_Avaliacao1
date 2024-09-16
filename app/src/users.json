@@ -1,0 +1,12 @@
+[
+    {
+        "username": "coordenacao",
+        "password": "coordenacao",
+        "permissions": ["registrar_solicitacao", "verificar_solicitacao_por_curso"]
+    },
+    {
+        "username": "tecnicos",
+        "password": "tecnicos",
+        "permissions": ["verificar_solicitacao_por_curso"]
+    }
+]
