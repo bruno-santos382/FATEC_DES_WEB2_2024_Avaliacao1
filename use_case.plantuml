@@ -1,0 +1,18 @@
+@startuml
+left to right direction
+actor "Coordenação" as coordenacao
+actor "Técnicos" as tecnicos
+actor "Usuário não logado" as anonimo
+
+package Cadastro {
+  usecase "Registrar Solicitação" as UC1
+  usecase "Verificar Solicitações por curso" as UC2
+  usecase "Verificar Solicitações" as UC3
+}
+coordenacao --> UC1
+coordenacao --> UC2
+coordenacao --> UC3
+tecnicos --> UC2
+tecnicos --> UC3
+anonimo --> UC3
+@enduml
