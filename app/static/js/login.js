@@ -12,7 +12,7 @@ form.addEventListener('submit', async (e) => {
         const data = await response.json()
 
         if (data.success) {
-            window.location.href = 'dashboard.php';
+            window.location.href = 'lista_chamados.php';
         } else {
             alert(data.message);
         }
