@@ -8,6 +8,8 @@
     ]);
 ?>
 
+<div class="d-flex justify-content-center align-items-center" style="height: calc(100vh - 56px);">
+    
 <div class="card" style="width: 30rem;">
     <div class="card-body">
         <h2 class="card-title text-center mb-4">Login</h2>
@@ -38,6 +40,7 @@
     </div>
 </div>
 
+</div>
 
 <?php 
     render('footer', [
