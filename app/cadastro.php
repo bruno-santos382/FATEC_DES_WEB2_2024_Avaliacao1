@@ -3,7 +3,7 @@ require __DIR__.'/load.php';
 
 $session = new Session();
 
-if (!$session->isLoggedIn()) {
+if (!in_array('registrar_solicitacao', $session->getPermissions())) {
     header('Location: login.php');
     exit;
 }
@@ -16,6 +16,8 @@ render('header', [
 
 ?>
 
+<div class="d-flex justify-content-center align-items-center" style="height: calc(100vh - 56px);">
+    
 <div class="card" style="width: 30rem;">
     <div class="card-body">
         <h2 class="card-title text-center mb-4">Cadastrar Chamado</h2>
@@ -31,9 +33,9 @@ render('header', [
                 <label for="laboratorio" class="form-label">Laboratório:</label>
                 <select class="form-select" name="laboratorio" id="laboratorio" required>
                     <option value="" disabled selected>Selecione um laboratório</option>
-                    <option value="laboratorio1">Laboratório 1</option>
-                    <option value="laboratorio2">Laboratório 2</option>
-                    <option value="laboratorio3">Laboratório 3</option>
+                    <option value="Laboratório 1">Laboratório 1</option>
+                    <option value="Laboratório 2">Laboratório 2</option>
+                    <option value="Laboratório 3">Laboratório 3</option>
                 </select>
             </div>
 
@@ -67,6 +69,7 @@ render('header', [
     </div>
 </div>
 
+</div>
 
 <?php 
     render('footer', [

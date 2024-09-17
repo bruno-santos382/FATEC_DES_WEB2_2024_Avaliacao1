@@ -65,4 +65,12 @@ class Session
         }
         return null;
     }
+
+    public function getPermissions(): array
+    {
+        if ($this->isLoggedIn()) {
+            return $_SESSION['user.permissions'];
+        }
+        return [];
+    }
 }

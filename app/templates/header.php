@@ -18,7 +18,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Sistema de Chamados</a>
+        <a class="navbar-brand" href="lista_chamados.php">Sistema de Chamados</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -31,16 +31,26 @@
                 </li>
 
                 <?php if ($session->isLoggedIn()): ?>
-                    <li class="nav-item">
-                        <a <?= (isset($active_link) && $active_link == 'chamados_curso') ? 'class="nav-link active" aria-current="true"' : 'class="nav-link"' ?>  href="chamados_curso.php">
-                            Chamados por Curso
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a <?= (isset($active_link) && $active_link == 'cadastro') ? 'class="nav-link active" aria-current="true"' : 'class="nav-link"' ?>  href="cadastro.php">
-                            Novo Chamado
-                        </a>
-                    </li>
+                    <?php if (in_array('verificar_solicitacao_por_curso', $session->getPermissions())): ?>
+                        <li class="nav-item">
+                            <a <?= (isset($active_link) && $active_link == 'chamados_curso_dsm') ? 'class="nav-link active" aria-current="true"' : 'class="nav-link"' ?>  href="chamados_curso_dsm.php">
+                                Chamados DSM
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a <?= (isset($active_link) && $active_link == 'chamados_curso_ge') ? 'class="nav-link active" aria-current="true"' : 'class="nav-link"' ?>  href="chamados_curso_ge.php">
+                                Chamados GE
+                            </a>
+                        </li>
+                    <?php endif; ?>
+
+                    <?php if (in_array('registrar_solicitacao', $session->getPermissions())): ?>
+                        <li class="nav-item">
+                            <a <?= (isset($active_link) && $active_link == 'cadastro') ? 'class="nav-link active" aria-current="true"' : 'class="nav-link"' ?>  href="cadastro.php">
+                                Novo Chamado
+                            </a>
+                        </li>
+                    <?php endif; ?>
                 <?php endif; ?>
             </ul>
             
@@ -57,4 +67,4 @@
 </nav>
 
 
-<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+<div class="container">
