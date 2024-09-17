@@ -4,6 +4,19 @@ class Chamado
 {
     public function cadastrar(array $data): void
     {
+        $session = new Session();
+        
+        if (!in_array('registrar_solicitacao', $session->getPermissions())) 
+        {
+            http_response_code(403);
+            $response = [
+                'success' => false,
+                'message' => 'Acesso negado. Você não tem permissão para realizar esta ação.'
+            ];
+            echo json_encode($response);
+            return;
+        }
+        
         $filters = [
             'laboratorio' => FILTER_DEFAULT,
             'prazo_limite' => [
@@ -56,5 +69,33 @@ class Chamado
 
         header('Content-Type: application/json');
         echo json_encode($response);
+    }
+
+    public function todos(): array 
+    {
+        $tickets = [];
+
+        $fp = fopen(__DIR__.'/chamados.txt', 'rb');
+
+        while ($buf = fgets($fp))
+        {
+            $data = explode(" | ", trim($buf));
+
+            $tickets[] = [
+                'laboratorio' => $data[0],
+                'prazo_limite' => $data[1],
+                'solicitacao' => $data[2],
+                'curso_atendendo' => $data[3],
+            ];
+        }
+
+        fclose($fp);
+
+        return $tickets;
+    }
+
+    public function buscaPorCurso(string $course): array
+    {
+        return array_filter($this->todos(), fn($ticket) => $ticket['curso_atendendo'] === $course);
     }
 }
