@@ -3,7 +3,8 @@
 
     render('header', [
         'title' => 'Efetuar Login',
-        'style' => ['static/css/main.css']
+        'style' => ['static/css/main.css'],
+        'session' => new Session()
     ]);
 ?>
 

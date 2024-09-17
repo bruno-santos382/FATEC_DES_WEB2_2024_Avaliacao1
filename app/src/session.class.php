@@ -57,4 +57,12 @@ class Session
             $_SESSION['user.username']
         );
     }
+
+    public function getUsername(): ?string
+    {
+        if ($this->isLoggedIn()) {
+            return $_SESSION['user.username'];
+        }
+        return null;
+    }
 }

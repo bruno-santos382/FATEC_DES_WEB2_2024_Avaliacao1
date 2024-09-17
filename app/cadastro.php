@@ -8,7 +8,11 @@ if (!$session->isLoggedIn()) {
     exit;
 }
 
-render('header', ['title' => 'Cadastrar Chamado']);
+render('header', [
+    'title' => 'Cadastrar Chamado',
+    'active_link' => 'cadastro',
+    'session' => $session
+]);
 
 ?>
 
