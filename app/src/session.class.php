@@ -7,7 +7,7 @@ if (session_status() == PHP_SESSION_NONE)
 
 class Session 
 {
-    public function login(array $data): string
+    public function login(array $data): void
     {
         $validated = filter_var_array($data, [
             'user' => FILTER_DEFAULT, 
@@ -24,14 +24,16 @@ class Session
                 $_SESSION['user.username'] = $user['username'];
                 $_SESSION['user.permissions'] = $user['permissions'];
                 
-                return json_encode([
+                echo json_encode([
                     'success' => true,
                     'message' => 'Login bem-sucedido.'
                 ]);
+
+                return;
             }
         }
 
-        return json_encode([
+        echo json_encode([
             'success' => false,
             'message' => 'Usuário ou senha inválidos.'
         ]);
@@ -41,16 +43,18 @@ class Session
     {
         unset(
             $_SESSION['user.id'],
-            $_SESSION['user.name'],
+            $_SESSION['user.username'],
             $_SESSION['user.permissions']
         );
+
+        header('Location: login.php');
     }
 
     public function isLoggedIn(): bool
     {
         return isset(
             $_SESSION['user.id'], 
-            $_SESSION['user.name']
+            $_SESSION['user.username']
         );
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use Random\Engine\Secure;
+
 require __DIR__.'/load.php';
 
 /**
@@ -16,7 +18,17 @@ function handleRequest(): void
     {
         case 'login':
             $session = new Session();
-            echo $session->login($_POST);
+            $session->login($_POST);
+            break;
+
+        case 'logout':
+            $session = new Session();
+            $session->logout();
+            break;
+
+        case 'cadastrar':
+            $chamado = new Chamado();
+            $chamado->cadastrar($_POST);
             break;
 
         default:

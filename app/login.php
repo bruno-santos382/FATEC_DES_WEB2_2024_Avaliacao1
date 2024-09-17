@@ -2,7 +2,7 @@
     require __DIR__.'/load.php';
 
     render('header', [
-        'title' => 'Título da página',
+        'title' => 'Efetuar Login',
         'style' => ['static/css/main.css']
     ]);
 ?>

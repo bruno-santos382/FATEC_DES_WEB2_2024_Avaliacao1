@@ -12,7 +12,6 @@ form.addEventListener('submit', async (e) => {
         const data = await response.json()
 
         if (data.success) {
-            alert(data.message);
             window.location.href = 'dashboard.php';
         } else {
             alert(data.message);
